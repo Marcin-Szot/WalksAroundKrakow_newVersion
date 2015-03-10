@@ -1,8 +1,8 @@
 <div class = "doc">
   <header>
-      <div id = "page_banner">
-        <%= link_to image_tag("banner_2.png"), posts_path %>
-      </div>
+    <div id = "page_banner">
+      <%= link_to image_tag("banner_2.png"), posts_path %>
+    </div>
   </header>
 
   <div class = "main_drawing">
@@ -15,7 +15,7 @@
 
         <div id = "old_town" class = "category_icon">
           <% if @number_of_categories == 6 %>
-            <%= link_to image_tag("stary_krakow_final_mini.jpg"), category_path(@categories.find(1)) %>
+              <%= link_to image_tag("stary_krakow_final_mini.jpg"), category_path(@categories.find(1)) %>
           <% end %>
           <img id = "old_town_desc" class = "description" src="assets/old_town_desc.png" alt="Stary Kraków">
         </div>
@@ -57,30 +57,33 @@
       </div>
 
       <div class = "posts">
-          <div class = "last_post">
-            <div class = "post_date">
-                <%= @posts.first.created_at.getlocal.to_date if @number_of_posts > 0 %>
-            </div>
-
-            <div class = "post_title">
-              <%= @posts.first.title if @number_of_posts > 0 %>
-            </div>
-
-            <div class = "post_text">
-              <% if @number_of_posts > 0 %>
-                <% if @posts.first.text.length > 200 %>
-                   <%= @posts.first.text.first(200) + "..." %>
-                <% else %>
-                   <%= @posts.first.text %>
-                <% end %>
-              <% end %>
-            </div>
-
-            <div class = "post_more">
-               <%= link_to 'więcej...', (post_path(@posts.first) if @number_of_posts > 0),
-                           style: 'text-decoration: none; color: white; font-size: 13px'%>
-            </div>
+        <%= link_to "Dodaj kategorię", new_category_path, style: 'text-decoration: none; color: grey; font-size: 13px;' %>
+        <div class = "last_post">
+          <div class = "post_date">
+            <%= @posts.first.created_at.getlocal.to_date if @number_of_posts > 0 %>
           </div>
+
+          <div class = "post_title">
+            <%= @posts.first.title if @number_of_posts > 0 %>
+          </div>
+
+          <div class = "post_text">
+            <% if @number_of_posts > 0 %>
+                <% if @posts.first.text.length > 200 %>
+                    <%= @posts.first.text.first(200) + "..." %>
+                <% else %>
+                    <%= @posts.first.text %>
+                <% end %>
+            <% end %>
+          </div>
+
+          <div class = "post_more">
+            <%= link_to "Dodaj kolejnego posta | ", new_post_path,
+                        style: 'text-decoration: none; color: grey; font-size: 13px;' %>
+            <%= link_to 'więcej...', (post_path(@posts.first)  if @number_of_posts > 0),
+                        style: 'text-decoration: none; color: white; font-size: 13px'%>
+          </div>
+        </div>
 
         <div class = "recent_posts">
           <% @posts.each do |post| %>
@@ -91,6 +94,13 @@
                 <%= post.title %>
               </div>
               <div class = "post_options">
+                <%= link_to "Edytuj | ", (edit_post_path(post) if @number_of_posts > 0),
+                            style: 'text-decoration: none; color: grey; font-size: 10px' %>
+                <%= link_to "Dodaj zdjęcie", (new_post_image_path(post) if @number_of_posts > 0),
+                            style: 'text-decoration: none; color: grey; font-size: 10px' %>
+                <%= link_to " | Usuń | ", (post_path(post) if @number_of_posts > 0), method: :delete,
+                            data: {confirm: "Czy aby na pewno usunąć tego posta?"},
+                            style: 'text-decoration: none; color: grey; font-size: 10px' %>
                 <%= link_to 'więcej...', (post_path(post)  if @number_of_posts > 0),
                             style: 'text-decoration: none; color: white; font-size: 10px'%>
               </div>

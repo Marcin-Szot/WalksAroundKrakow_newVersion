@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 
-$(document).ready(function() {
+$(window).load(function() {
 
     var margin = ($(".doc").width() - 1200)/2;
     $("#page_banner").css({
@@ -97,4 +97,5 @@ $(document).ready(function() {
             "opacity" : "0"
         }, 500);
     });
+
 });

@@ -1,0 +1,40 @@
+<div class = "doc">
+  <header>
+    <div id = "page_banner">
+      <%= link_to image_tag("banner_2.png"), "/index_admin" %>
+    </div>
+  </header>
+
+  <div class = "main_drawing">
+    <%= image_tag("krakow_sketch.jpg") %>
+  </div>
+
+  <div class = "content">
+    <div class = "container">
+      <%= form_for :post, url: posts_path do |f| %>
+        <% if @post.errors.any? %>
+           <div class = "error_explanation">
+             <h2>This post can not be saved because of <%= pluralize(@post.errors.count, "error") %>:</h2>
+             <ul>
+               <% @post.errors.full_messages.each do |msg| %>
+                   <li><%= msg %></li>
+               <% end %>
+             </ul>
+           </div>
+        <% end %>
+
+        <%= f.label "Tytuł:" %> <br>
+        <%= f.text_field :title %> <br>
+
+        <%= f.label "Treść posta:" %> <br>
+        <%= f.text_area :text %> <br>
+
+        <%= f.submit "Zapisz" %>
+      <% end %>
+    </div>
+  </div>
+
+  <footer>
+        created by Marcin Szot
+  </footer>
+</div>

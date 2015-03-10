@@ -1,0 +1,65 @@
+<div class = "doc">
+  <header>
+    <div id = "page_banner">
+      <%= link_to image_tag("banner_2.png"), posts_path %>
+    </div>
+  </header>
+
+  <div class = "main_drawing">
+    <%= image_tag("krakow_sketch.jpg") %>
+  </div>
+
+  <div class = "content">
+    <div class = "container">
+      <%= form_for :post, url: post_path(@post), method: :patch do |f| %>
+          <% if @post.errors.any? %>
+              <div id = "error_explanation">
+                <h2>This post can not be saved because of <%= pluralize(@post.errors.count, "error") %>:</h2>
+                <ul>
+                  <% @post.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <%= f.label "Tytuł:" %> <br>
+          <%= f.text_field :title %> <br>
+
+          <%= f.label "Treść posta:" %> <br>
+          <%= f.text_area :text %> <br>
+
+          <%= f.submit "Zapisz" %>
+      <% end %>
+
+      <div class = "photos_bar">
+        <% @post.images.each do |image| %>
+            <div class = "edit_photo_item">
+              <%= image_tag image.photo_url(:thumb).to_s, style: 'float: left; margin-right: 30px;' %>
+
+              <div class = "editing_form">
+                <%= form_for :image, url: post_image_path(@post, image), method: :patch do |f| %>
+                    <%= f.label "Tytuł:" %>
+                    <%= f.text_field :title %> <br>
+                    <% if  image.category then %>
+                        <%= f.label "Kategoria (" + image.category + "):" %>
+                    <% else %>
+                        <%= f.label "Kategoria ():" %>
+                    <% end %>
+                    <%= f.text_field :category %> <br>
+                    <%= f.submit "Zapisz" %>
+                <% end %>
+
+                <%= link_to 'Usuń zdjęcie', [image.post, image], method: :delete, data: {confirm: "Czy aby na pewno usunąć to zdjęcie?"},
+                            style: 'text-decoration: none; color: white; font-size: 13px'%>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    created by Marcin Szot
+  </footer>
+</div>

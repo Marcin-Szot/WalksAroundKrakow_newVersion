@@ -1,0 +1,30 @@
+<div class = "doc">
+  <header>
+    <div id = "page_banner">
+      <%= link_to image_tag("banner_2.png"), posts_path %>
+    </div>
+  </header>
+
+  <div class = "main_drawing">
+    <%= image_tag("krakow_sketch.jpg") %>
+  </div>
+
+  <div class = "content">
+    <div class = "container">
+      <%= form_for([@post,@post.images.build], :html => {:multipart => true}) do |f| %>
+          <%= f.label "Tytuł zdjęcia: " %> </br>
+          <%= f.text_field :title %> </br>
+
+          <%= f.label "Kategoria: " %> </br>
+          <%= f.text_field :category %> </br>
+          </br>
+          <%= f.file_field :photo %>
+          <%= f.submit "Dodaj wybrane zdjęcie" %>
+      <% end %>
+    </div>
+  </div>
+
+  <footer>
+        created by Marcin Szot
+  </footer>
+</div>

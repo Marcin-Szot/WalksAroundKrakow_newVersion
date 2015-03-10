@@ -1,0 +1,16 @@
+<div class = "doc">
+  <div class = "content">
+    <div class = "post_full">
+      <%= form_for :category, url: category_index_path do |f| %>
+          <%= f.label "Nazwa Kategorii:" %> <br>
+          <%= f.text_field :title %> <br>
+
+          <%= f.submit "Zapisz" %>
+      <% end %>
+    </div>
+
+    <div class = "post_back">
+      <%= link_to "Posty", "/index_admin" %>
+    </div>
+  </div>
+</div>

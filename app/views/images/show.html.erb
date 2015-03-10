@@ -1,0 +1,11 @@
+<body style = "background: #000000">
+<div class = "doc">
+  <div id = "image_content">
+    <%= link_to image_tag(@image.photo_url.to_s), :back %>
+  </div>
+
+  <div id = "photo_title">
+    <%= @image.title %>
+  </div>
+</div>
+</body>

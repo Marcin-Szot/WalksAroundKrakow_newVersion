@@ -1,0 +1,46 @@
+<div class = "doc">
+  <header>
+    <div id = "page_banner">
+      <%= link_to image_tag("banner_2.png"), posts_path %>
+    </div>
+  </header>
+
+  <div class = "main_drawing">
+    <%= image_tag("krakow_sketch.jpg") %>
+  </div>
+
+  <div class = "content">
+    <div class = "container">
+        <div class = "entire_post">
+          <div class = "post_date">
+            <%= @post.created_at.getlocal.to_date %>
+          </div>
+
+          <div class = "post_title">
+            <%= @post.title %>
+          </div>
+
+          <div class = "post_text">
+            <%= @post.text %>
+          </div>
+        </div>
+
+      <div class = "attached_photos">
+        <% @post.images.each do |image| %>
+            <div class = "photo_item">
+              <div class = "photo_thumb">
+                <%= link_to image_tag(image.photo_url(:thumb).to_s), post_image_path(@post, image) %>
+              </div>
+              <div class = "mini_photo_title">
+                <%= image.title %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+        created by Marcin Szot
+  </footer>
+</div>
