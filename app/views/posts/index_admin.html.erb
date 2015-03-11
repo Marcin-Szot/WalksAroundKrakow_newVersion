@@ -78,7 +78,7 @@
           </div>
 
           <div class = "post_more">
-            <%= link_to "Dodaj kolejnego posta | ", new_post_path,
+            <%= link_to "Dodaj kolejnego posta | ", (new_post_path if @number_of_posts > 0),
                         style: 'text-decoration: none; color: grey; font-size: 13px;' %>
             <%= link_to 'więcej...', (post_path(@posts.first)  if @number_of_posts > 0),
                         style: 'text-decoration: none; color: white; font-size: 13px'%>

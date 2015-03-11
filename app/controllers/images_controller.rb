@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
 
-  http_basic_authenticate_with name: "---", password: "---", except: :show
+  http_basic_authenticate_with name: "Marcin", password: "Olmarik89", except: :show
 
   def new
     @image = Image.new
@@ -22,7 +22,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     @post = @image.post
 
-    if @image.update(params[:image].permit(:category))
+    if @image.update(params[:image].permit(:category, :title))
       redirect_to edit_post_path(@post)
     end
   end
