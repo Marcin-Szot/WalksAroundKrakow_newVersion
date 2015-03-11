@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
 
-  http_basic_authenticate_with name: "Marcin", password: "Olmarik89", except: :show
+  http_basic_authenticate_with name: "---", password: "---", except: :show
 
   def new
     @image = Image.new
